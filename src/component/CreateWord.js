@@ -1,25 +1,28 @@
 import { useRef, useState } from 'react';
 import useFetch from '../hook/useFetch'
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useNavigate } from 'react-router-dom';
 
 export default function CreateWord(){
-    const days= useFetch('http://localhost:3002/days');
+    const days= useFetch('http://localhost:3001/days');
 
     const engRef = useRef(null);
     const korRef = useRef(null);
     const dayRef = useRef(null);
 
-    const history =useHistory();
+    const history =useNavigate();
     const [isLoading,setIsLoading] = useState(false);
 
     return(
          <form onSubmit={(event)=>{
             event.preventDefault();
-
+            if(engRef.current.value===''|| korRef.current.value==='' || dayRef.current.value===''){
+                alert('모두 입력하세요!');
+                return;
+            }
             //  loading중이지 않을때 생성할거고 생성중일때는 또다른 값을 생성하지 못하게 한다.(네트워크가 느릴 경우를 대비). 즉 여러번 클릭 불가
             if(!isLoading){
                 setIsLoading(true);
-                fetch('http://localhost:3002/words',{
+                fetch('http://localhost:3001/words',{
                     method: 'POST',
                     headers:{
                         "Content-Type": "application/json",
@@ -36,7 +39,7 @@ export default function CreateWord(){
                 .then(res=>{
                     if(res.ok){
                         window.alert('단어가 생성되었습니다!');
-                        history.push(`/day/${dayRef.current.value}`);
+                        history(`/day/${dayRef.current.value}`);
                         setIsLoading(false);
                     }
                 })

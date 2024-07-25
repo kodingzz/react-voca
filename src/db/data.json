@@ -1,9 +1,17 @@
 {
   "days": [
     {
-      "id": "5eff",
+      "id": "cd51",
       "day": 1
     }
   ],
-  "words": []
+  "words": [
+    {
+      "id": "d1d0",
+      "day": 1,
+      "eng": "korea",
+      "kor": "한국",
+      "isDone": false
+    }
+  ]
 }

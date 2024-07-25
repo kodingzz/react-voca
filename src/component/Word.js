@@ -16,7 +16,8 @@ export default function Word(props){
         <tr className={isDone ?'off':''}>
         <td><input type='checkbox' checked={isDone} onChange={()=>{
 
-           fetch(`http://localhost:3002/words/${word.id}`,{
+            // Json 파일의 isDone 수정
+           fetch(`http://localhost:3001/words/${word.id}`,{
                 method:"PUT",
                 headers:{
                     "Content-Type": "application/json",
@@ -27,6 +28,7 @@ export default function Word(props){
                 })
             }
             )
+            //  isDone의 값에따라 css값을 다르게 설정되므로 
             .then(res=>{
                 if(res.ok){
                     setIsDone(!isDone);
@@ -45,14 +47,13 @@ export default function Word(props){
             if(window.confirm('삭제 할거에욘?')){
               
                 //  json 파일에서 삭제됨
-                fetch(`http://localhost:3002/words/${word.id}`,{
+                fetch(`http://localhost:3001/words/${word.id}`,{
                     method:"DELETE",
                 })
                 //  ui에서도 사라지게 word를 state화 해서 랜더링
                 .then(res=>{
                     if(res.ok){
                         setWord({id:0});
-
                     }
                 })
             }

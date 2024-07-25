@@ -96,6 +96,10 @@ table td:first-child {
   color: #fff;
   background-color: firebrick;
 }
+.btn_day_del{
+  background-color: firebrick;
+  margin-top: 2rem;
+}
 
 button {
   padding: 10px;
@@ -130,3 +134,22 @@ button {
   height: 40px;
   font-size: 20px;
 }   
+
+.arrow_left{
+  background-color: transparent;
+  color: black;
+  font-size: 40px;
+  position: absolute;
+  left: 10px;
+  top: 280px;
+}
+
+
+.arrow_right{
+  background-color: transparent;
+  color: black;
+  font-size: 40px;
+  position: absolute;
+  right: 10px;
+  top: 280px;
+}

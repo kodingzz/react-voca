@@ -1,16 +1,16 @@
 
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useNavigate } from 'react-router-dom';
 import useFetch  from '../hook/useFetch';
 
 export default function CreateDay(){
-    const days= useFetch('http://localhost:3002/days');
-    const history =useHistory();
+    const days= useFetch('http://localhost:3001/days');
+    const history =useNavigate();
 
     return(
         <div>
             <h3>현재 일수: {days.length}일</h3>   
             <button onClick={()=>{
-                fetch('http://localhost:3002/days',{
+                fetch('http://localhost:3001/days',{
                     method:"POST",
                     headers:{
                         "Content-Type": "application/json",
@@ -24,7 +24,7 @@ export default function CreateDay(){
                     if(response.ok){
                         //  첫번째 페이지
                         alert('날짜가 생성되었습니다!')
-                        history.push(`/`);
+                        history(`/`);
                     }
                 })
             }}>Day 추가</button>
